@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	sort_two(t_stack *a)
 {
 	if (a->top->index > a->top->next->index)
-		sa(a, 1);
+		sa(a);
 }
 
 /*
@@ -41,21 +41,21 @@ void	sort_three(t_stack *a)
 	second = a->top->next->index;
 	third = a->top->next->next->index;
 	if (first > second && second < third && first < third)
-		sa(a, 1);
+		sa(a);
 	else if (first > second && second > third)
 	{
-		sa(a, 1);
-		rra(a, 1);
+		sa(a);
+		rra(a);
 	}
 	else if (first > second && second < third && first > third)
-		ra(a, 1);
+		ra(a);
 	else if (first < second && second > third && first < third)
 	{
-		sa(a, 1);
-		ra(a, 1);
+		sa(a);
+		ra(a);
 	}
 	else if (first < second && second > third && first > third)
-		rra(a, 1);
+		rra(a);
 }
 
 /*
@@ -65,7 +65,7 @@ void	sort_four(t_stack *a, t_stack *b)
 {
 	push_min_to_b(a, b);
 	sort_three(a);
-	pa(a, b, 1);
+	pa(a, b);
 }
 
 /*
@@ -76,6 +76,6 @@ void	sort_five(t_stack *a, t_stack *b)
 	push_min_to_b(a, b);
 	push_min_to_b(a, b);
 	sort_three(a);
-	pa(a, b, 1);
-	pa(a, b, 1);
+	pa(a, b);
+	pa(a, b);
 }

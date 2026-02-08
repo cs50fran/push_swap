@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/08 12:00:04 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,27 @@ static void	reverse_rotate(t_stack *stack)
 /*
 ** rra: Reverse rotate stack a - last element becomes first
 */
-void	rra(t_stack *a, int print)
+void	rra(t_stack *a)
 {
 	reverse_rotate(a);
-	if (print)
-		ft_putstr_fd("rra\n", 1);
+	ft_putstr_fd("rra\n", 1);
 }
 
 /*
 ** rrb: Reverse rotate stack b - last element becomes first
 */
-void	rrb(t_stack *b, int print)
+void	rrb(t_stack *b)
 {
 	reverse_rotate(b);
-	if (print)
-		ft_putstr_fd("rrb\n", 1);
+	ft_putstr_fd("rrb\n", 1);
 }
 
 /*
 ** rrr: rra and rrb at the same time
 */
-void	rrr(t_stack *a, t_stack *b, int print)
+void	rrr(t_stack *a, t_stack *b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	if (print)
-		ft_putstr_fd("rrr\n", 1);
+	ft_putstr_fd("rrr\n", 1);
 }

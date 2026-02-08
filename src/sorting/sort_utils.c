@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	push_min_to_b(t_stack *a, t_stack *b)
 	{
 		while (min_pos > 0)
 		{
-			ra(a, 1);
+			ra(a);
 			min_pos--;
 		}
 	}
@@ -91,9 +91,9 @@ void	push_min_to_b(t_stack *a, t_stack *b)
 	{
 		while (min_pos < a->size)
 		{
-			rra(a, 1);
+			rra(a);
 			min_pos++;
 		}
 	}
-	pb(a, b, 1);
+	pb(a, b);
 }

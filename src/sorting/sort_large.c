@@ -6,107 +6,90 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** Calculate chunk size based on total number of elements
-** More chunks = more operations but simpler logic
-** Fewer chunks = fewer operations but need smarter placement
+** Rotate stack to optimal position to bring target to top
+** Uses shortest path (ra or rra)
 */
-static int	get_chunk_size(int total)
+static void	rotate_to_top(t_stack *stack, int pos, char stack_name)
 {
-	if (total <= 100)
-		return (20);
-	return (55);
-}
-
-/*
-** Push elements from stack a to b in chunks
-** Elements are pushed if their index falls within the current chunk range
-** This creates a roughly sorted stack b (larger values toward top)
-*/
-static void	push_chunks_to_b(t_stack *a, t_stack *b)
-{
-	int	chunk_size;
-	int	chunk_num;
-	int	pushed;
-	int	total;
-
-	total = a->size;
-	chunk_size = get_chunk_size(total);
-	chunk_num = 0;
-	pushed = 0;
-	while (a->size > 0)
+	if (pos <= stack->size / 2)
 	{
-		if (a->top->index <= chunk_num * chunk_size + chunk_size - 1)
+		while (pos-- > 0)
 		{
-			pb(a, b, 1);
-			if (b->size > 1 && b->top->index < chunk_num * chunk_size
-				+ chunk_size / 2)
-				rb(b, 1);
-			pushed++;
-			if (pushed >= chunk_size || pushed >= total - chunk_num * chunk_size)
-			{
-				chunk_num++;
-				pushed = 0;
-			}
-		}
-		else
-			ra(a, 1);
-	}
-}
-
-/*
-** Bring the maximum element to top of b using optimal rotation
-*/
-static void	bring_max_to_top_b(t_stack *b)
-{
-	int	max_pos;
-
-	max_pos = find_max_index(b);
-	if (max_pos <= b->size / 2)
-	{
-		while (max_pos > 0)
-		{
-			rb(b, 1);
-			max_pos--;
+			if (stack_name == 'a')
+				ra(stack);
+			else
+				rb(stack);
 		}
 	}
 	else
 	{
-		while (max_pos < b->size)
+		while (pos++ < stack->size)
 		{
-			rrb(b, 1);
-			max_pos++;
+			if (stack_name == 'a')
+				rra(stack);
+			else
+				rrb(stack);
 		}
 	}
 }
 
 /*
-** Push all elements back from b to a
-** Always push the maximum element first to maintain sorted order
+** Push all elements from A to B in descending order (largest on top)
+** Keep only 3 elements in A
 */
-static void	push_back_to_a(t_stack *a, t_stack *b)
+static void	push_all_to_b(t_stack *a, t_stack *b)
 {
-	while (b->size > 0)
+	int	max_pos;
+
+	while (a->size > 3)
 	{
-		bring_max_to_top_b(b);
-		pa(a, b, 1);
+		max_pos = find_max_index(a);
+		rotate_to_top(a, max_pos, 'a');
+		pb(a, b);
 	}
 }
 
 /*
+** Push all elements from B back to A
+** B is sorted descending (largest on top), A is sorted ascending
+** Just push all - result will be circularly sorted
+*/
+static void	push_back_to_a(t_stack *a, t_stack *b)
+{
+	while (b->size > 0)
+		pa(a, b);
+}
+
+/*
+** Rotate A until smallest element is at top
+*/
+static void	final_rotate(t_stack *a)
+{
+	int	min_pos;
+
+	min_pos = find_min_index(a);
+	rotate_to_top(a, min_pos, 'a');
+}
+
+/*
 ** Main sorting algorithm for large stacks
-** Strategy: Chunk-based sorting
-** 1. Push elements to b in chunks (roughly sorted)
-** 2. Push back to a by always taking the max from b
+** Strategy:
+** 1. Push all to B in descending order (largest first), keep 3 in A
+** 2. Sort the 3 remaining in A
+** 3. Push back from B to A in correct position (both sorted)
+** 4. Final rotate to put smallest at top
 */
 void	sort_large(t_stack *a, t_stack *b)
 {
-	push_chunks_to_b(a, b);
+	push_all_to_b(a, b);
+	sort_three(a);
 	push_back_to_a(a, b);
+	final_rotate(a);
 }

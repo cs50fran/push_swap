@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/08 11:33:50 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ t_node	*stack_get_max(t_stack *stack);
 int		get_position(t_stack *stack, t_node *node);
 
 /* Operations - Swap */
-void	sa(t_stack *a, int print);
-void	sb(t_stack *b, int print);
-void	ss(t_stack *a, t_stack *b, int print);
+void	sa(t_stack *a);
+void	sb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
 
 /* Operations - Push */
-void	pa(t_stack *a, t_stack *b, int print);
-void	pb(t_stack *a, t_stack *b, int print);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
 
 /* Operations - Rotate */
-void	ra(t_stack *a, int print);
-void	rb(t_stack *b, int print);
-void	rr(t_stack *a, t_stack *b, int print);
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rr(t_stack *a, t_stack *b);
 
 /* Operations - Reverse Rotate */
-void	rra(t_stack *a, int print);
-void	rrb(t_stack *b, int print);
-void	rrr(t_stack *a, t_stack *b, int print);
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
 
 /* Parsing */
 int		parse_args(int argc, char **argv, t_stack *a);
