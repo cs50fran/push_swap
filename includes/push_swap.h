@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/09 15:12:05 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:34:49 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	rotate_a_to_pos(t_stack *stack_a, int pos_a);
 void	rotate_b_to_pos(t_stack *stack_b, int pos_b);
 void	do_rotations(t_stack *stack_a, t_stack *stack_b,
 			int *pos_a, int *target_b);
-void 	final_rotate(t_stack *a);
+void	final_rotate(t_stack *a);
 
 /* Error handling and cleanup */
 void	error_exit(t_stack *a, t_stack *b);
