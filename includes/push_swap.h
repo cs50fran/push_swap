@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:12:05 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,30 @@
 # include <limits.h>
 
 /*
-** Stack node structure (doubly-linked list)
+** Stack node structure (double-linked list)
 ** value: the original input value
 ** index: normalized index (0 to n-1) for easier sorting
+**
+** Turk algorithm fields:
+** pos: current position in the stack (0 = top)
+** target: pointer to target node in the other stack
+** cost_a: number of rotations needed in stack A
+** cost_b: number of rotations needed in stack B
+** total_cost: optimized total cost (considers rr/rrr)
+** above_median: true if node is in upper half (use ra/rb, else rra/rrb)
+** cheapest: true if this node has the lowest total cost
 */
 typedef struct s_node
 {
 	int				value;
 	int				index;
+	int				pos;
+	int				cost_a;
+	int				cost_b;
+	int				total_cost;
+	int				above_median;
+	int				cheapest;
+	struct s_node	*target;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
@@ -82,12 +98,25 @@ void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 void	sort_four(t_stack *a, t_stack *b);
 void	sort_five(t_stack *a, t_stack *b);
-void	sort_large(t_stack *a, t_stack *b);
 
 /* Sorting utilities */
 int		find_min_index(t_stack *stack);
 int		find_max_index(t_stack *stack);
 void	push_min_to_b(t_stack *a, t_stack *b);
+
+/* Turk algorithm */
+void	turk_sort(t_stack *a, t_stack *b);
+void	set_positions(t_stack *stack);
+void	set_targets(t_stack *a, t_stack *b);
+void	set_costs(t_stack *a, t_stack *b);
+t_node	*set_cheapest(t_stack *a);
+
+/* Turk rotations */
+void	rotate_a_to_pos(t_stack *stack_a, int pos_a);
+void	rotate_b_to_pos(t_stack *stack_b, int pos_b);
+void	do_rotations(t_stack *stack_a, t_stack *stack_b,
+			int *pos_a, int *target_b);
+void 	final_rotate(t_stack *a);
 
 /* Error handling and cleanup */
 void	error_exit(t_stack *a, t_stack *b);

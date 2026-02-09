@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/08 15:23:40 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 12:16:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,18 @@ static void	swap(t_stack *stack)
 	stack->top->next->index = tmp_index;
 }
 
-/*
-** sa: Swap the first 2 elements at the top of stack a
-*/
 void	sa(t_stack *a)
 {
 	swap(a);
 	ft_putstr_fd("sa\n", 1);
 }
 
-/*
-** sb: Swap the first 2 elements at the top of stack b
-*/
 void	sb(t_stack *b)
 {
 	swap(b);
 	ft_putstr_fd("sb\n", 1);
 }
 
-/*
-** ss: sa and sb at the same time
-*/
 void	ss(t_stack *a, t_stack *b)
 {
 	swap(a);

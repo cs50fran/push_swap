@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:38:57 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:15:28 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** Check if a string is a valid integer and store the value
-** Handles: sign, digits only, INT_MIN to INT_MAX range
 */
 int	is_valid_integer(char *str, long *num)
 {
@@ -65,49 +64,4 @@ int	has_duplicates(t_stack *stack, int value)
 		i++;
 	}
 	return (0);
-}
-
-/*
-** Count how many values are smaller than the given value
-** This gives us the index (0 = smallest, n-1 = largest)
-*/
-static int	count_smaller(t_stack *stack, int value)
-{
-	t_node	*current;
-	int		count;
-	int		i;
-
-	count = 0;
-	current = stack->top;
-	i = 0;
-	while (i < stack->size)
-	{
-		if (current->value < value)
-			count++;
-		current = current->next;
-		i++;
-	}
-	return (count);
-}
-
-/*
-** Assign indices to all nodes based on their relative values
-** Index 0 = smallest value, index (n-1) = largest value
-** This simplifies the sorting algorithm significantly
-*/
-void	assign_indices(t_stack *stack)
-{
-	t_node	*current;
-	int		i;
-
-	if (!stack || !stack->top)
-		return ;
-	current = stack->top;
-	i = 0;
-	while (i < stack->size)
-	{
-		current->index = count_smaller(stack, current->value);
-		current = current->next;
-		i++;
-	}
 }

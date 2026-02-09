@@ -6,14 +6,14 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/08 15:31:57 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 12:17:40 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** pa: Take the first element at the top of b and put it at the top of a
+** push: Take the first element at the top of stack_x and put it at the top of stack_z
 */
 void	pa(t_stack *a, t_stack *b)
 {
@@ -25,9 +25,6 @@ void	pa(t_stack *a, t_stack *b)
 	ft_putstr_fd("pa\n", 1);
 }
 
-/*
-** pb: Take the first element at the top of a and put it at the top of b
-*/
 void	pb(t_stack *a, t_stack *b)
 {
 	t_node	*node;

@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 12:19:27 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** Add a number to the bottom of the stack (to maintain argument order)
-** First argument should be at the top, so we add to bottom
 */
 static int	add_to_stack_bottom(t_stack *stack, int value)
 {

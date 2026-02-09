@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+
+
 NAME		= push_swap
 BONUS_NAME	= checker
 
@@ -33,8 +35,10 @@ SRC_FILES	= main.c \
 			  parsing/parse_args.c \
 			  parsing/validation.c \
 			  sorting/sort_small.c \
-			  sorting/sort_large.c \
 			  sorting/sort_utils.c \
+			  sorting/turk_sort.c \
+			  sorting/turk_utils.c \
+			  sorting/turk_rotations.c \
 			  utils/error.c \
 			  utils/free.c
 

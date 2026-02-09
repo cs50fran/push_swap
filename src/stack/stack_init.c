@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:15:02 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_stack	*stack_init(void)
 
 /*
 ** Create a new node with the given value
+** Initializes all Turk algorithm fields to default values
 */
 t_node	*node_new(int value)
 {
@@ -39,6 +40,13 @@ t_node	*node_new(int value)
 		return (NULL);
 	node->value = value;
 	node->index = -1;
+	node->pos = 0;
+	node->cost_a = 0;
+	node->cost_b = 0;
+	node->total_cost = 0;
+	node->above_median = 0;
+	node->cheapest = 0;
+	node->target = NULL;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -69,27 +77,46 @@ void	stack_push(t_stack *stack, t_node *node)
 }
 
 /*
-** Pop and return the top node from the stack
+** Count how many values are smaller than the given value
+** This gives us the index (0 = smallest, n-1 = largest)
 */
-t_node	*stack_pop(t_stack *stack)
+static int	count_smaller(t_stack *stack, int value)
 {
-	t_node	*node;
+	t_node	*current;
+	int		count;
+	int		i;
+
+	count = 0;
+	current = stack->top;
+	i = 0;
+	while (i < stack->size)
+	{
+		if (current->value < value)
+			count++;
+		current = current->next;
+		i++;
+	}
+	return (count);
+}
+
+/*
+** Assign indices to all nodes based on their relative values
+** Index 0 = smallest value, index (n-1) = largest value
+** This simplifies the sorting algorithm significantly
+*/
+void	assign_indices(t_stack *stack)
+{
+	t_node	*current;
+	int		i;
 
 	if (!stack || !stack->top)
-		return (NULL);
-	node = stack->top;
-	if (stack->size == 1)
+		return ;
+	current = stack->top;
+	i = 0;
+	while (i < stack->size)
 	{
-		stack->top = NULL;
+		current->index = count_smaller(stack, current->value);
+		current = current->next;
+		i++;
 	}
-	else
-	{
-		stack->top = node->next;
-		stack->top->prev = node->prev;
-		node->prev->next = stack->top;
-	}
-	node->next = NULL;
-	node->prev = NULL;
-	stack->size--;
-	return (node);
 }

@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:45:53 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+/*
+** Print error message to stderr and exit
+** Free stacks before exiting
+*/
+void	error_exit(t_stack *a, t_stack *b)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (a)
+		free_stack(a);
+	if (b)
+		free_stack(b);
+	exit(1);
 }

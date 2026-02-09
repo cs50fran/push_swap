@@ -6,7 +6,7 @@
 /*   By: fdinis-d <fdinis-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/02/01 19:05:34 by fdinis-d         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:15:02 by fdinis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,30 @@ int	get_position(t_stack *stack, t_node *node)
 		pos++;
 	}
 	return (-1);
+}
+
+/*
+** Pop and return the top node from the stack
+*/
+t_node	*stack_pop(t_stack *stack)
+{
+	t_node	*node;
+
+	if (!stack || !stack->top)
+		return (NULL);
+	node = stack->top;
+	if (stack->size == 1)
+	{
+		stack->top = NULL;
+	}
+	else
+	{
+		stack->top = node->next;
+		stack->top->prev = node->prev;
+		node->prev->next = stack->top;
+	}
+	node->next = NULL;
+	node->prev = NULL;
+	stack->size--;
+	return (node);
 }
