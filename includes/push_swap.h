@@ -104,19 +104,9 @@ int		find_min_index(t_stack *stack);
 int		find_max_index(t_stack *stack);
 void	push_min_to_b(t_stack *a, t_stack *b);
 
-/* Turk algorithm */
-void	turk_sort(t_stack *a, t_stack *b);
-void	set_positions(t_stack *stack);
-void	set_targets(t_stack *a, t_stack *b);
-void	set_costs(t_stack *a, t_stack *b);
-t_node	*set_cheapest(t_stack *a);
-
-/* Turk rotations */
-void	rotate_a_to_pos(t_stack *stack_a, int pos_a);
-void	rotate_b_to_pos(t_stack *stack_b, int pos_b);
-void	do_rotations(t_stack *stack_a, t_stack *stack_b,
-			int *pos_a, int *target_b);
-void	final_rotate(t_stack *a);
+/* Chunk algorithm */
+void	chunk_sort(t_stack *a, t_stack *b);
+void	push_back_to_a(t_stack *a, t_stack *b);
 
 /* Error handling and cleanup */
 void	error_exit(t_stack *a, t_stack *b);

@@ -28,7 +28,7 @@ void	sort_stack(t_stack *a, t_stack *b)
 	else if (a->size == 5)
 		sort_five(a, b);
 	else
-		turk_sort(a, b);
+		chunk_sort(a, b);
 }
 
 int	main(int argc, char **argv)

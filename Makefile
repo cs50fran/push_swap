@@ -38,9 +38,8 @@ SRC_FILES	= main.c \
 			  parsing/validation.c \
 			  sorting/sort_small.c \
 			  sorting/sort_utils.c \
-			  sorting/turk_sort.c \
-			  sorting/turk_utils.c \
-			  sorting/turk_rotations.c \
+			  sorting/chunk_sort.c \
+			  sorting/chunk_utils.c \
 			  utils/free.c
 
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
